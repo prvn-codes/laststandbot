@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{ url_for('static', filename='style.css') }}
+</head>
+<body>
+    {% macro match_card(match) -%}
+        <a href='/match/{{match["id"]}}'>
+            <div class="match-card">
+                <h1>
+                    <strong>{{match["team_a"]}}</strong>
+                    Vs
+                    <strong>{{match["team_b"]}}</strong>
+                </h1>
+                <p>{{match["state"]}}</p>
+            </div>
+        </a>
+    {%- endmacro %}
+</body>
+</html>
