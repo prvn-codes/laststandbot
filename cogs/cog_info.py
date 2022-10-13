@@ -1,7 +1,6 @@
 from discord.ext import commands
 from cogs.match import Match
 
-
 async def createSession(ctx: commands.Context, interval: int):
     if not Match.instance:
         Match.instance = Match(ctx, interval)
@@ -9,20 +8,20 @@ async def createSession(ctx: commands.Context, interval: int):
         del Match.instance
         Match.instance = None
 
-
 class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='matches')
-    async def _matches(self, ctx: commands.Context, interval: int = 60):
+    @commands.has_permissions(administrator=True)
+    async def _matches(self, ctx: commands.Context, interval: int = 45):
         self.bot.loop.create_task(createSession(ctx, interval))
 
     @commands.command(name="mstop")
+    @commands.has_permissions(administrator=True)
     async def _stop(self, ctx: commands.Context):
         if Match.instance:
             await Match.instance.stop()
-
 
 async def setup(bot):
     await bot.add_cog(Info(bot))
