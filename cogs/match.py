@@ -15,9 +15,9 @@ class Match:
         self.has_finished = False
         self.interval = interval
 
-        # TODO: Challounge username, API_KEY
+        
         self.creds = (
-            "bunxyz", "zmIG44cw40om3SSY4OuVi8Qg2ZuhboBu1AL7Z4zd")
+            "", "")
         self.driver = Driver(username=self.creds[0], api_key=self.creds[1])
         self.tournament_id = self.driver.getTournamentIDs()[0]
 
