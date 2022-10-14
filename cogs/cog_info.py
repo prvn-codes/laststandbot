@@ -13,15 +13,27 @@ class Info(commands.Cog):
         self.bot = bot
 
     @commands.command(name='matches')
-    @commands.has_permissions(administrator=True)
     async def _matches(self, ctx: commands.Context, interval: int = 45):
-        self.bot.loop.create_task(createSession(ctx, interval))
+        is_able_to_run = False
+        for role in ctx.author.roles:
+            if role.name in ('Coordinator', 'Deputy Coordinator'):
+                is_able_to_run = True
+                break
+
+        if is_able_to_run:
+            self.bot.loop.create_task(createSession(ctx, interval))
 
     @commands.command(name="mstop")
-    @commands.has_permissions(administrator=True)
     async def _stop(self, ctx: commands.Context):
-        if Match.instance:
-            await Match.instance.stop()
+        is_able_to_run = False
+        for role in ctx.author.roles:
+            if role.name in ('Coordinator', 'Deputy Coordinator'):
+                is_able_to_run = True
+                break
+
+        if is_able_to_run:
+            if Match.instance:
+                await Match.instance.stop()
 
 async def setup(bot):
     await bot.add_cog(Info(bot))

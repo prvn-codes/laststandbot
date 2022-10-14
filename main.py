@@ -27,6 +27,6 @@ loop.run_until_complete(main())
 print("--- Done Loading Cogs ---")
 
 # TODO: Enter discord API KEYs
-client.run("")
+client.run("MTAxODQwOTk4MDM4ODQ1ODU5Ng.GFRuZQ.PWM0nOlqKMjRA_Co31QkNjmoD9R9cSnxd3XKTo")
 
 loop.close()
